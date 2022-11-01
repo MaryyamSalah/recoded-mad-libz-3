@@ -26,18 +26,18 @@
  * There are multiple ways to do this, but you may want to use regular expressions.
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
-function parseStory(rawStory) {
-  const pattern = /(\w+\[[nva]\])|[.,]|\w+[^\[.\]\s]/g;
+function parseStory(rawStory) {//retrieves the story as a single string from story.txt
+  const pattern = /(\w+\[[nva]\])|[.,]|\w+[^\[.\]\s]/g;//w from a to z 0 to 9 \s	Matches any white-space character.
   const storyArray = rawStory.match(pattern);
   const nounPattern = /\[n\]/;
   const verbPattern = /\[v\]/;
   const adjectivePattern = /\[a\]/;
   const parsedStory = [];
   storyArray.forEach((str) => {
-    const obj = {};
+    const obj = {};  //to return a list of objects
     if (nounPattern.test(str)) {
-      obj["word"] = str.slice(0, str.length - 3);
-      obj["pos"] = "noun";
+      obj["word"] = str.slice(0, str.length - 3);//each object should definitely have a field, `word`
+      obj["pos"] = "noun";//each object should maybe have a field, `pos` (part of speech)
       parsedStory.push(obj);
     } else if (verbPattern.test(str)) {
       obj["word"] = str.slice(0, str.length - 3);
